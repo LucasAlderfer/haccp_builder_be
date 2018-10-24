@@ -8,5 +8,6 @@ describe Product, type: :model do
 
   context 'relationships' do
     it {should belong_to(:company)}
+    it {should have_many(:ingredients)}
   end
 end
