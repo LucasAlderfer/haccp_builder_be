@@ -11,4 +11,8 @@ describe Company, type: :model do
     it {should validate_presence_of(:team_member_1_name)}
     it {should validate_presence_of(:team_member_1_title)}
   end
+
+  context 'relationships' do
+    it {should have_many(:products)}
+  end
 end
