@@ -44,7 +44,6 @@ describe 'POST /api/v1/companies' do
   it 'can post a company to the database' do
     expect(Company.all.count).to eq(0)
     company = {
-                id: 2,
                 name: 'Turing',
                 email: 'test@test.com',
                 password: '12345',
@@ -53,11 +52,12 @@ describe 'POST /api/v1/companies' do
                 team_member_1_name: 'tom',
                 team_member_1_title: 'President'
               }
-    expected = { "id" => 2 }
+    expected = { "id" => 1 }
     post "/api/v1/companies", params: {company: company.to_json}
 
     expect(response.status).to eq(200)
     expect(JSON.parse(response.body)).to eq(expected)
     expect(Company.all.count).to eq(1)
+    binding.pry
   end
 end
