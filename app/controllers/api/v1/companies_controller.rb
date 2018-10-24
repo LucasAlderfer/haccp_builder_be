@@ -1,4 +1,5 @@
 class Api::V1::CompaniesController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     render json: Company.all
@@ -9,7 +10,7 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def create
-    company = Company.create!(JSON.parse(params[:company]))
+    company = Company.create!(company_params)
     if company.save
       render json: { id: company.id }
     else
@@ -17,4 +18,9 @@ class Api::V1::CompaniesController < ApplicationController
     end
   end
 
+  private
+
+  def company_params
+    params.require(:company).permit(:name, :address, :email, :password, :phone, :team_member_1_name, :team_member_1_title)
+  end
 end
