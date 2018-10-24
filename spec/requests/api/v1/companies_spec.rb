@@ -53,7 +53,7 @@ describe 'POST /api/v1/companies' do
                 team_member_1_title: 'President'
               }
     expected = { "id" => 1 }
-    post "/api/v1/companies", params: {company: company.to_json}
+    post "/api/v1/companies", params: {company: company}
 
     expect(response.status).to eq(200)
     expect(JSON.parse(response.body)).to eq(expected)
