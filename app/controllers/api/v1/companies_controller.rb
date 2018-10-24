@@ -11,7 +11,7 @@ class Api::V1::CompaniesController < ApplicationController
   def create
     company = Company.create!(JSON.parse(params[:company]))
     if company.save
-      render json: { id: company.id }, status: 200
+      render json: { id: company.id }
     else
       render json: { error: "Unable to create message"}, status: 500
     end
