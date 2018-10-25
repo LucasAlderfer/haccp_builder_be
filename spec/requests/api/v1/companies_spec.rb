@@ -40,10 +40,13 @@ describe 'GET /api/v1/companies/:id' do
                   "team_member_1_name" => company.team_member_1_name,
                   "team_member_1_title" => company.team_member_1_title,
                   "products" => [
-                      { "id" => product_1.id,
+                      {
+                        "company_id" => product_1.company_id,
+                        "id" => product_1.id,
                         "name" => product_1.name,
                         "ingredients" => [
                           {
+                            "product_id" => ingredient_1.product_id,
                             "id" => ingredient_1.id,
                             "name" => ingredient_1.name,
                             "receiving_from" => ingredient_1.receiving_from,
@@ -77,6 +80,7 @@ describe 'GET /api/v1/companies/:id' do
                             "packaging_hazard_handling" => ingredient_1.packaging_hazard_handling
                           },
                           {
+                            "product_id" => ingredient_2.product_id,
                             "id" => ingredient_2.id,
                             "name" => ingredient_2.name,
                             "receiving_from" => ingredient_2.receiving_from,
@@ -110,10 +114,13 @@ describe 'GET /api/v1/companies/:id' do
                             "packaging_hazard_handling" => ingredient_2.packaging_hazard_handling
                           }
                           ]},
-                          { "id" => product_2.id,
+                          {
+                            "company_id" => product_2.company_id,
+                            "id" => product_2.id,
                             "name" => product_2.name,
                             "ingredients" => [
                               {
+                                "product_id" => ingredient_3.product_id,
                                 "id" => ingredient_3.id,
                                 "name" => ingredient_3.name,
                                 "receiving_from" => ingredient_3.receiving_from,
@@ -147,6 +154,7 @@ describe 'GET /api/v1/companies/:id' do
                                 "packaging_hazard_handling" => ingredient_3.packaging_hazard_handling
                               },
                               {
+                                "product_id" => ingredient_4.product_id,
                                 "id" => ingredient_4.id,
                                 "name" => ingredient_4.name,
                                 "receiving_from" => ingredient_4.receiving_from,
@@ -183,7 +191,6 @@ describe 'GET /api/v1/companies/:id' do
                   ]
                 }
     get "/api/v1/companies/#{company.id}"
-
     expect(response.status).to eq(200)
     expect(JSON.parse(response.body)).to eq(expected)
   end

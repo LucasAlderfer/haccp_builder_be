@@ -6,7 +6,7 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def show
-    render json: Company.find(params[:id])
+    render json: Company.includes(:ingredients).find(params[:id])
   end
 
   def create
