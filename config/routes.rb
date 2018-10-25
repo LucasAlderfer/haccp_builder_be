@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :companies, only: [:index, :show, :create, :update]
+      namespace :products do
+        post '/:id/ingredients', to: 'ingredients#create'
+      end
     end
   end
 end
