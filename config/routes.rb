@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       namespace :products do
         post '/:id/ingredients', to: 'ingredients#create'
       end
+      resources :ingredients, only: [:update]
     end
   end
 end
