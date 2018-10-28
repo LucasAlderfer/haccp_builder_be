@@ -29,9 +29,8 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def auth
-    binding.pry
     company = Company.find_by_email(params[:company_email])
-    if company && company.authenticate(params[:password])
+    if company && company.authenticate(params[:company_password])
       render json: { id: company.id, name: company.name }
     else
       render json: { error: "Login Error"}, status: 404
