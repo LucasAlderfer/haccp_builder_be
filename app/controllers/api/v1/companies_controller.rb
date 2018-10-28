@@ -28,6 +28,16 @@ class Api::V1::CompaniesController < ApplicationController
     end
   end
 
+  def auth
+    binding.pry
+    company = Company.find_by_email(params[:company_email])
+    if company && company.authenticate(params[:password])
+      render json: { id: company.id, name: company.name }
+    else
+      render json: { error: "Login Error"}, status: 404
+    end
+  end
+
   private
 
   def company_params
