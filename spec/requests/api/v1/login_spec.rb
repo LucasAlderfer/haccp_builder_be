@@ -12,6 +12,6 @@ describe 'GET /api/v1/companies?company_email=:email&company_password=:password'
     get "/api/v1/company?company_email=#{company.email}&company_password=#{company.password}"
 
     expect(response.status).to eq(200)
-    expect(response.body).to eq(expected)
+    expect(response.body).to eq(expected.to_json)
   end
 end
