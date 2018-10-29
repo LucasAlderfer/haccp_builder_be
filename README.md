@@ -2,6 +2,7 @@
 
 POST "/api/v1/companies"
 Required Parameters:
+```
   {
     company:
       {
@@ -14,29 +15,35 @@ Required Parameters:
         team_member_1_title: 'a string that is the title'
       }
   }
+```
  Successful POST:
  status: 200,
  body:
+```
   {
   id: integer
   }
+```
  Failed POST:
  status: 500
  
  PUT "/api/v1/companies/:id"
  Parameters:
+ ```
   {
     company:
       {
       name: 'a new name'
       }
    }
+ ```
  Successful PUT:
  status: 200,
  body:  The company object with the updated attributes
  
  POST "/api/v1/products/:id/ingredients"
  Parameters:
+ ```
  {
   ingredient:
     {
@@ -72,35 +79,46 @@ Required Parameters:
       packaging_hazard_handling: string (defaults to empty string)
      }
     }
+ ```
 Successful POST:
 status: 200,
-body: {
+body: 
+```
+      {
         id: ingredient_id (integer)
        }
+```
 Failed POST:
 status: 500,
-body: {
+body: 
+```
+      {
         error: "Unable to create ingredient"
        }
-
+```
 PUT "/api/v1/ingredients/:id"
 Parameters: 
+```
           {
             ingredient:
                         {
                           name: "new name" (can be any of the listed fields, as many as desired)
                          }
            }
+ ```
  Successful PUT:
  status: 200,
  body: 
+ ```
       {
         id: ingredient.id
       }
+ ```
  Failed PUT:
  status: 500,
  body: 
+ ```
         {
           error: "Unable to update ingredient"
         }
-  
+  ```
