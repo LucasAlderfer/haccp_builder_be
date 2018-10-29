@@ -9,10 +9,6 @@ Required Parameters:
         name: 'a name as a string',
         email: 'a string that is an email address',
         password: 'a string, encryption/auth not finalized',
-        address: 'a string that is an address',
-        phone: 'a string that is a phone number',
-        team_member_1_name: 'a string that is a name',
-        team_member_1_title: 'a string that is the title'
       }
   }
 ```
