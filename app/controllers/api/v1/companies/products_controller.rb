@@ -1,4 +1,5 @@
 class Api::V1::Companies::ProductsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def create
     company = Company.find(params[:id])
