@@ -221,10 +221,6 @@ describe 'POST /api/v1/companies' do
     company = {
                 name: 'Turing',
                 password: '12345',
-                address: '12345 street way',
-                phone: '1234567890',
-                team_member_1_name: 'tom',
-                team_member_1_title: 'President'
               }
     post "/api/v1/companies", params: {company: company}
     expect(response.status).to eq(500)
