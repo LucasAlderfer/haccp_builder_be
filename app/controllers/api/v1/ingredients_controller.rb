@@ -6,7 +6,7 @@ class Api::V1::IngredientsController < ApplicationController
     if ingredient.save
       render json: { id: ingredient.id }
     else
-      render json: { error: "Unable to create ingredient"}, status: 500
+      render json: { error: "Unable to update ingredient"}, status: 500
     end
   end
 
