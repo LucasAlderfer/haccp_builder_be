@@ -1,5 +1,5 @@
 class Api::V1::Companies::ProductsController < ApplicationController
-  # skip_before_action :verify_authenticity_token
+  before_action :authenticate_company!, :company_signed_in?
 
   def create
     company = Company.find(params[:id])
@@ -23,7 +23,7 @@ class Api::V1::Companies::ProductsController < ApplicationController
   end
 
   private
-  
+
   def product_params
     params.require(:product).permit(:name)
   end
