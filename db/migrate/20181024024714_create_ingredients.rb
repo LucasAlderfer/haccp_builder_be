@@ -11,20 +11,20 @@ class CreateIngredients < ActiveRecord::Migration[5.1]
       t.boolean :receiving_hazard_phys, default: false
       t.boolean :receiving_hazard_chem, default: false
       t.string :receiving_hazard_handling, default: ''
-      t.string :storage_type, default: ''
-      t.boolean :storage_dna, default: false
-      t.string :storage_other, default: ''
-      t.boolean :storage_hazard_bio, default: false
-      t.boolean :storage_hazard_phys, default: false
-      t.boolean :storage_hazard_chem, default: false
-      t.string :storage_hazard_handling, default: ''
-      t.string :preparation_method, default: ''
-      t.boolean :preparation_dna, default: false
-      t.string :preparation_other, default: ''
-      t.boolean :preparation_hazard_bio, default: false
-      t.boolean :preparation_hazard_phys, default: false
-      t.boolean :preparation_hazard_chem, default: false
-      t.string :preparation_hazard_handling, default: ''
+      t.string :inventory_type, default: ''
+      t.boolean :inventory_dna, default: false
+      t.string :inventory_other, default: ''
+      t.boolean :inventory_hazard_bio, default: false
+      t.boolean :inventory_hazard_phys, default: false
+      t.boolean :inventory_hazard_chem, default: false
+      t.string :inventory_hazard_handling, default: ''
+      t.string :processing_method, default: ''
+      t.boolean :processing_dna, default: false
+      t.string :processing_other, default: ''
+      t.boolean :processing_hazard_bio, default: false
+      t.boolean :processing_hazard_phys, default: false
+      t.boolean :processing_hazard_chem, default: false
+      t.string :processing_hazard_handling, default: ''
       t.string :packaging_method, default: ''
       t.boolean :packaging_dna, default: false
       t.string :packaging_other, default: ''
