@@ -23,9 +23,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-gem 'bcrypt'
+# gem 'bcrypt'
 gem 'active_model_serializers'
 gem 'rack-cors', require: 'rack/cors'
+gem 'devise-jwt', '~> 0.5.8'
+gem 'figaro'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

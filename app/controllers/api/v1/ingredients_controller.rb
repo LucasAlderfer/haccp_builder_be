@@ -1,5 +1,5 @@
 class Api::V1::IngredientsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   def update
     ingredient = Ingredient.find(params[:id])
