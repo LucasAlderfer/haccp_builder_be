@@ -1,5 +1,5 @@
 class Api::V1::Companies::ProductsController < ApplicationController
-  before_action :authenticate_company!, :company_signed_in?
+  before_action :authenticate_user!, :user_signed_in?
 
   def create
     company = Company.find(params[:id])

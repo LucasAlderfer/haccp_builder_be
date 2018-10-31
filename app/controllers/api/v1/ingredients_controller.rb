@@ -1,5 +1,5 @@
 class Api::V1::IngredientsController < ApplicationController
-  before_action :authenticate_company!, :company_signed_in?
+  before_action :authenticate_user!, :user_signed_in?
 
   def update
     ingredient = Ingredient.find(params[:id])

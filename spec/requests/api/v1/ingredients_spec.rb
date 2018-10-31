@@ -5,6 +5,7 @@ describe 'POST /api/v1/products/:id/ingredients' do
     user = User.create!(email: 'test@test.com', password: '12345')
     company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
     product_1 = company.products.create!(name: 'burrito')
+    sign_in(user)
     ingredient = {
       "name" => "basil",
       "receiving_from" => "tommy",
@@ -48,6 +49,7 @@ describe 'POST /api/v1/products/:id/ingredients' do
     user = User.create!(email: 'test@test.com', password: '12345')
     company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
     product_1 = company.products.create!(name: 'burrito')
+    sign_in(user)
     ingredient = {
       "receiving_from" => "tommy",
       "receiving_letter" => false,
@@ -94,6 +96,7 @@ describe 'PUT /api/v1/ingredients/:id' do
     company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
     product_1 = company.products.create!(name: 'burrito')
     ingredient_1 = product_1.ingredients.create!(name: 'meat', receiving_from: 'tom', inventory_type: 'frozen', processing_method: 'smashed', packaging_method: 'wrapped')
+    sign_in(user)
     ingredient = {
       "name" => "basil",
       "receiving_from" => "tommy",

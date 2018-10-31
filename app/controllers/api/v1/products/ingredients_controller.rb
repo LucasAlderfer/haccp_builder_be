@@ -1,5 +1,5 @@
 class Api::V1::Products::IngredientsController < ApplicationController
-  before_action :authenticate_company!, :company_signed_in?
+  before_action :authenticate_user!, :user_signed_in?
 
   def create
     product = Product.find(params[:id])

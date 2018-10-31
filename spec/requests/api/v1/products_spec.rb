@@ -4,6 +4,7 @@ describe 'POST /api/v1/companies/:id/products' do
   it 'can post a product to the database' do
     user = User.create!(email: 'test@test.com', password: '12345')
     company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
+    sign_in(user)
     expect(Product.all.count).to eq(0)
     product = {
                 name: 'Developers'
@@ -22,6 +23,7 @@ describe 'PUT /api/v1/companies/:id/products/:product_id' do
   it 'can edit a product in the database' do
     user = User.create!(email: 'test@test.com', password: '12345')
     company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
+    sign_in(user)
     product = company.products.create!(name: 'Developers')
     new_product = {
                 name: 'Developering'
