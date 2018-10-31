@@ -200,3 +200,8 @@ Parameters:
   DELETE "/logout"
    - Logs out the user
   status: 204
+
+#Created By
+[Tom King](https://github.com/tomkingkong)  
+[Ben Paige](https://github.com/benjaminpaige)    
+[Lucas Alderfer](https://github.com/LucasAlderfer)  
