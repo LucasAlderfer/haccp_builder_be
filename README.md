@@ -3,6 +3,9 @@
 ## What Is This?
 This repo is the backend for the HACCP plan builder, the front-end repo for which you can find here: https://github.com/benjaminpaige/haccp.  This application aims to help small businesses make their HACCP plans faster and easier so that they can get back to focusing on the real reason they started out on their own.
 
+## Deployment
+This application is deployed at https://haccpbuilder.herokuapp.com
+
 ## TECH
 - Rails 5.1.6 (with Ruby 2.4.1)
 - Devise
