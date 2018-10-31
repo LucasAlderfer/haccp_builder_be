@@ -1,20 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe 'POST /login', type: :request do
-  let(:company) { Company.create!(id: 1, name: 'Turing', email: 'test@test.com', password: '12345', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President') }
+  let(:user) { User.create!(email: 'email@email.com', password: '123456') }
   let(:url) { '/login' }
   let(:params) do
     {
-      company: {
-        email: company.email,
-        password: company.password
+      user: {
+        email: user.email,
+        password: user.password
       }
     }
   end
 
   let(:invalid_params) do
     {
-      company: {
+      user: {
         email: 'Invalid',
         password: 'Invalid'
       }

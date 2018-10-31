@@ -2,17 +2,19 @@ require 'rails_helper'
 
 describe 'GET /api/v1/companies' do
   it 'shows all companies' do
-    company = Company.create!(id: 1, name: 'Turing', email: 'test@test.com', password: '12345', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
+    user = User.create!(email: 'test@test.com', password: '12345')
+    sign_in(user)
+    company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
     expected = [
                 {
                   "id" => company.id,
                   "name" => company.name,
-                  "email" => company.email,
                   "address" => company.address,
                   "phone" => company.phone,
                   "team_member_1_name" => company.team_member_1_name,
                   "team_member_1_title" => company.team_member_1_title,
-                  "products" => []
+                  "products" => [],
+                  "user_id" => user.id
                 }
     ]
     get '/api/v1/companies'
@@ -24,7 +26,9 @@ end
 
 describe 'GET /api/v1/companies/:id' do
   it 'shows a company' do
-    company = Company.create!(id: 1, name: 'Turing', email: 'test@test.com', password: '12345', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
+    user = User.create!(email: 'test@test.com', password: '12345')
+    sign_in(user)
+    company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
     product_1 = company.products.create!(name: 'burrito')
     product_2 = company.products.create!(name: 'sausage')
     ingredient_1 = product_1.ingredients.create!(name: 'meat', receiving_from: 'tom', inventory_type: 'frozen', processing_method: 'smashed', packaging_method: 'wrapped')
@@ -34,11 +38,11 @@ describe 'GET /api/v1/companies/:id' do
     expected =  {
                   "id" => company.id,
                   "name" => company.name,
-                  "email" => company.email,
                   "address" => company.address,
                   "phone" => company.phone,
                   "team_member_1_name" => company.team_member_1_name,
                   "team_member_1_title" => company.team_member_1_title,
+                  "user_id" => user.id,
                   "products" => [
                       {
                         "company_id" => product_1.company_id,
@@ -199,14 +203,15 @@ end
 describe 'POST /api/v1/companies' do
   it 'can post a company to the database' do
     expect(Company.all.count).to eq(0)
+    user = User.create!(email: 'test@test.com', password: '12345')
+    sign_in(user)
     company = {
                 name: 'Turing',
-                email: 'test@test.com',
-                password: '12345',
                 address: '12345 street way',
                 phone: '1234567890',
                 team_member_1_name: 'tom',
-                team_member_1_title: 'President'
+                team_member_1_title: 'President',
+                user_id: user.id
               }
     expected = { "id" => 1 }
     post "/api/v1/companies", params: {company: company}
@@ -218,9 +223,10 @@ describe 'POST /api/v1/companies' do
 
   it 'cannot post a company without all the right attributes' do
     expect(Company.all.count).to eq(0)
+    user = User.create!(email: 'test@test.com', password: '12345')
+    sign_in(user)
     company = {
-                name: 'Turing',
-                password: '12345',
+                user_id: user.id
               }
     post "/api/v1/companies", params: {company: company}
     expect(response.status).to eq(500)
@@ -230,25 +236,26 @@ end
 
 describe 'PUT /api/v1/companies/:id' do
   it 'can edit a company' do
-    company = Company.create!(id: 1, name: 'Turing', email: 'test@test.com', password: '12345', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
+    user = User.create!(email: 'test@test.com', password: '12345')
+    sign_in(user)
+    company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
     new_company = {
                     name: 'Touring',
-                    email: 'well@tested',
-                    password: '12345',
                     address: 'A new Basement',
                     phone: '1234567890',
                     team_member_1_name: 'BEN',
-                    team_member_1_title: 'Idea Box'
+                    team_member_1_title: 'Idea Box',
+                    user_id: user.id
     }
     expected = {
                     "name" => 'Touring',
-                    "email" => 'well@tested',
                     "id" => company.id,
                     "address" => 'A new Basement',
                     "phone" => '1234567890',
                     "products" => [],
                     "team_member_1_name" => 'BEN',
-                    "team_member_1_title" => 'Idea Box'
+                    "team_member_1_title" => 'Idea Box',
+                    "user_id" => user.id
     }
     put "/api/v1/companies/#{company.id}", params: {company: new_company}
 

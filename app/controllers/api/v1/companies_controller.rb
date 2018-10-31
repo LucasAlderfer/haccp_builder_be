@@ -1,16 +1,16 @@
 class Api::V1::CompaniesController < ApplicationController
-  before_action :authenticate_company!, :company_signed_in?
+  before_action :authenticate_user!, :user_signed_in?
 
   def index
     render json: Company.all
   end
 
   def show
-    render json: Company.includes(:ingredients).find(params[:id])
+    render json: current_user.companies.includes(:ingredients).find(params[:id])
   end
 
   def create
-    company = Company.create(company_params)
+    company = current_user.companies.create(company_params)
     if company.save
       render json: { id: company.id }
     else
@@ -40,6 +40,6 @@ class Api::V1::CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :address, :email, :password, :phone, :team_member_1_name, :team_member_1_title)
+    params.require(:company).permit(:name, :address, :phone, :team_member_1_name, :team_member_1_title, :user_id)
   end
 end

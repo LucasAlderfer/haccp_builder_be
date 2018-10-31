@@ -260,7 +260,7 @@ Devise.setup do |config|
       ['DELETE', %r{^/logout$}]
     ]
     jwt.expiration_time = 1.day.to_i
-    jwt.request_formats = { company: [:json] }
+    jwt.request_formats = { user: [:json] }
   end
 
   config.navigational_formats = ['*/*', :html]
