@@ -1,5 +1,16 @@
 # README
 
+## What Is This?
+This repo is the backend for the HACCP plan builder, the front-end repo for which you can find here: https://github.com/benjaminpaige/haccp.  This application aims to help small businesses make their HACCP plans faster and easier so that they can get back to focusing on the real reason they started out on their own.
+
+## TECH
+- Rails 5.1.6 (with Ruby 2.4.1)
+- Devise
+- RSpec
+- SimpleCov
+- TravisCI
+
+## ENDPOINTS
 POST "/signup"
 Required Parameters:
 ```
@@ -83,6 +94,27 @@ Parameters:
  Failed PUT:
  status: 500
  
+ POST "/api/v1/companies/:id/products"
+ Parameters:
+ ```
+ {
+    product:
+            {
+              name: 'string'
+            }
+ }
+ ```
+ Successful POST:
+ status: 200
+ body:
+ ```
+ {
+  id: (integer of the new id)
+ }
+ ```
+ Failed POST:
+ status: 500
+ 
  POST "/api/v1/products/:id/ingredients"
  Parameters:
  ```
@@ -164,3 +196,7 @@ Parameters:
           error: "Unable to update ingredient"
         }
   ```
+  
+  DELETE "/logout"
+   - Logs out the user
+  status: 204
