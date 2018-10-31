@@ -1,5 +1,5 @@
 class Api::V1::IngredientsController < ApplicationController
-  # skip_before_action :verify_authenticity_token
+  before_action :authenticate_company!, :company_signed_in?
 
   def update
     ingredient = Ingredient.find(params[:id])
