@@ -1,4 +1,4 @@
-# README
+[![Build Status](https://travis-ci.com/LucasAlderfer/haccp_builder_be.svg?branch=master)](https://travis-ci.com/LucasAlderfer/haccp_builder_be)
 
 ## What Is This?
 This repo is the backend for the HACCP plan builder, the front-end repo for which you can find here: https://github.com/benjaminpaige/haccp.  This application aims to help small businesses make their HACCP plans faster and easier so that they can get back to focusing on the real reason they started out on their own.
