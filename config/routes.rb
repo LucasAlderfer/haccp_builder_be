@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :company,
+  devise_for :user,
            path: '',
            path_names: {
              sign_in: 'login',
