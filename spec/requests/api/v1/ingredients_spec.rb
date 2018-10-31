@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'POST /api/v1/products/:id/ingredients' do
   it 'can create an ingredient' do
-    company = Company.create!(id: 1, name: 'Turing', email: 'test@test.com', password: '12345', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
+    user = User.create!(email: 'test@test.com', password: '12345')
+    company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
     product_1 = company.products.create!(name: 'burrito')
     ingredient = {
       "name" => "basil",
@@ -44,7 +45,8 @@ describe 'POST /api/v1/products/:id/ingredients' do
     expect(product_1.ingredients.count).to eq(1)
   end
   it 'cannot create an ingredient without required fields (name)' do
-    company = Company.create!(id: 1, name: 'Turing', email: 'test@test.com', password: '12345', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
+    user = User.create!(email: 'test@test.com', password: '12345')
+    company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
     product_1 = company.products.create!(name: 'burrito')
     ingredient = {
       "receiving_from" => "tommy",
@@ -88,7 +90,8 @@ end
 
 describe 'PUT /api/v1/ingredients/:id' do
   it 'can edit an ingredient' do
-    company = Company.create!(id: 1, name: 'Turing', email: 'test@test.com', password: '12345', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
+    user = User.create!(email: 'test@test.com', password: '12345')
+    company = user.companies.create!(id: 1, name: 'Turing', address: '12345 street way', phone: '1234567890', team_member_1_name: 'tom', team_member_1_title: 'President')
     product_1 = company.products.create!(name: 'burrito')
     ingredient_1 = product_1.ingredients.create!(name: 'meat', receiving_from: 'tom', inventory_type: 'frozen', processing_method: 'smashed', packaging_method: 'wrapped')
     ingredient = {
