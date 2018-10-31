@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181031032010) do
+ActiveRecord::Schema.define(version: 20181031201211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(version: 20181031032010) do
     t.boolean "packaging_hazard_chem", default: false
     t.string "packaging_hazard_handling", default: ""
     t.index ["product_id"], name: "index_ingredients_on_product_id"
+  end
+
+  create_table "jwt_blacklist", force: :cascade do |t|
+    t.string "jti", null: false
+    t.index ["jti"], name: "index_jwt_blacklist_on_jti"
   end
 
   create_table "products", force: :cascade do |t|
