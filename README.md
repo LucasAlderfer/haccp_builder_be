@@ -1,14 +1,53 @@
 # README
 
-POST "/api/v1/companies"
+POST "/signup"
 Required Parameters:
+```
+  {
+    user:
+      {
+        email: 'a string that is an email address',
+        password: 'a string'
+      }
+  }
+```
+- A successful POST will return:
+```
+  {
+    id: (some integer id of the user),
+    email: (the email address of the created user)
+  }
+```
+
+POST "/login"
+```
+  {
+    user:
+      {
+        email: 'a string that is an email address',
+        password: 'a string'
+      }
+  }
+```
+- A successful POST will return:
+```
+  {
+    id: (some integer id of the user)
+  }
+```
+A header with a key of AUTHORIZATION will be returned with a hashed token that should be stored locally to authenticate the user's session.
+
+POST "/api/v1/companies"
+This company will be created as belonging to the currently logged in user, a user must be logged in to create a company.
+Parameters:
 ```
   {
     company:
       {
-        name: 'a name as a string',
-        email: 'a string that is an email address',
-        password: 'a string, encryption/auth not finalized',
+        name: 'a name as a string', (required)
+        address: 'an address as a string',
+        team_member_1_name: 'string',
+        team_member_1_title: 'string'
       }
   }
 ```
@@ -24,18 +63,25 @@ Required Parameters:
  status: 500
  
  PUT "/api/v1/companies/:id"
+ This action can only be taken by the user that owns the company.
  Parameters:
  ```
   {
     company:
       {
-      name: 'a new name'
+      name: 'a name as a string', (required)
+      address: 'an address as a string',
+      team_member_1_name: 'string',
+      team_member_1_title: 'string'
       }
    }
  ```
  Successful PUT:
  status: 200,
  body:  The company object with the updated attributes
+ 
+ Failed PUT:
+ status: 500
  
  POST "/api/v1/products/:id/ingredients"
  Parameters:
