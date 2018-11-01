@@ -8,6 +8,7 @@ This application is deployed at https://haccpbuilder.herokuapp.com
 
 ## TECH
 - Rails 5.1.6 (with Ruby 2.4.1)
+- PostgreSQL
 - Devise
 - RSpec
 - SimpleCov
